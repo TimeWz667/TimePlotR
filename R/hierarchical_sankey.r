@@ -73,7 +73,7 @@ as.stage.series <- function(x, stages) {
 
 print.stage.series <- function(ss) {
   cat('Number of sample:', nrow(ss$Data), '\n')
-  cat('Stages:', names(ss$Hierarchy))
+  cat('Stages:', names(ss$Hierarchy), '\n')
 }
 
 
