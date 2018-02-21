@@ -1,11 +1,12 @@
 Package: TimePlotR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A Naive Library of Graphs with Time
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Chu-Chang Ku
+Maintainer: Chu-Chang Ku <TimeWz667@gmail.com>
+Description: This package provides few graphic tools for making graphs with time-depended data.
+License: MIT
 Encoding: UTF-8
 LazyData: true
+Import:
+  ggplot2
