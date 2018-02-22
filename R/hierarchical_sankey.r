@@ -1,9 +1,9 @@
-#' Title
+#' Stage series
 #'
-#' @param x
-#' @param stages
+#' @param x data.frame; input data
+#' @param stages a vector of names of columns
 #'
-#' @return
+#' @return a stage.series object
 #' @export
 #'
 #' @examples
@@ -79,17 +79,17 @@ print.stage.series <- function(ss) {
 
 
 
-#' Title
+#' Sankey diagram with hierarchy.
 #'
-#' @param x.ss
-#' @param bar.width
-#' @param bar.dist.min
-#' @param xlab
-#' @param ylab
-#' @param band.col
-#' @param band.alpha
+#' @param x.ss a stage.series object
+#' @param bar.width width of bars
+#' @param bar.dist.min the minimal distance between bars in the same stage
+#' @param xlab label of stages
+#' @param ylab label of states or levels
+#' @param band.col colour of flow bands
+#' @param band.alpha opacity of flow bands
 #'
-#' @return
+#' @return hierarchical Sankey with ggplot
 #' @export
 #'
 #' @examples
