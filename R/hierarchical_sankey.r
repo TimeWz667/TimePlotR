@@ -191,14 +191,14 @@ hierarchical.sankey <-
 
     # Make the graph
     plt <- ggplot2::ggplot(data = stocks) +
-      geom_rect(aes(
+      ggplot2::geom_rect(ggplot2::aes(
         xmin = x0,
         xmax = x1,
         ymin = y0,
         ymax = y1,
         fill = Level
       )) +
-      geom_text(aes(
+      ggplot2::geom_text(ggplot2::aes(
         x = (x0 + x1) / 2,
         y = (y0 + y1) / 2,
         label = Level
@@ -217,7 +217,7 @@ hierarchical.sankey <-
         xs <- seq(x0, x1, length.out = n.step)
         dat <- data.frame(xs, ys.lower, ys.upper)
         ggplot2::geom_ribbon(
-          aes(
+          ggplot2::aes(
             x = xs,
             ymin = ys.lower,
             ymax = ys.upper
@@ -232,8 +232,8 @@ hierarchical.sankey <-
     plt <- plt + ggplot2::labs(x = xlab, y = ylab) +
       ggplot2::theme(
         legend.position = "none",
-        axis.text.y = element_blank(),
-        axis.text.x = element_text(face = "bold")
+        axis.text.y = ggplot2::element_blank(),
+        axis.text.x = ggplot2::element_text(face = "bold")
       )
 
     plt
