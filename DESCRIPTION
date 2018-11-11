@@ -1,7 +1,7 @@
 Package: TimePlotR
 Type: Package
 Title: A Naive Library of Graphs with Time
-Version: 0.1.0
+Version: 0.1.2
 Author: Chu-Chang Ku
 Maintainer: Chu-Chang Ku <TimeWz667@gmail.com>
 Description: This package provides few graphic tools for making graphs with time-depended data.

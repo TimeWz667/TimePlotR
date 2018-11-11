@@ -1,4 +1,4 @@
-#' Stage series
+#' transform data.frame to stage.series type. The data type contains the information about stocks and flows
 #'
 #' @param x data.frame; input data
 #' @param stages a vector of names of columns
@@ -7,7 +7,21 @@
 #' @export
 #'
 #' @examples
+#' library(TimePlotR)
+#' dat.ss = as.stage.series(FourLevels, c('Lv1', 'Lv2', 'Lv3', 'Lv4'))
+#' print(dat.ss)
+#'
 as.stage.series <- function(x, stages) {
+  lvs <- lapply(stages, function(i) {
+    d <- x[,i]
+    if (is.factor(d)) {
+      return (levels(d))
+    } else {
+      return (unique(d))
+    }
+  })
+  names(lvs) <- stages
+
   factorised <- list()
   for (stage in stages) {
     # todo check existance
@@ -54,16 +68,11 @@ as.stage.series <- function(x, stages) {
   }
   stocks <- stocks[, c('Stage', 'Level', 'Count')]
 
-  # Formulate hierarchical structure
-  hei <- lapply(stages, function(stage)
-    levels(factorised[, stage]))
-  names(hei) <- stages
-
   res <- list(
     Data = factorised,
     Flows = flows,
     Stocks = stocks,
-    Hierarchy = hei
+    Hierarchy = lvs
   )
 
   class(res) <- 'stage.series'
@@ -79,7 +88,7 @@ print.stage.series <- function(ss) {
 
 
 
-#' Sankey diagram with hierarchy.
+#' Sankey diagram with hierarchy. The diagram shows the flows between states of each pair of stages.
 #'
 #' @param x.ss a stage.series object
 #' @param bar.width width of bars
@@ -93,6 +102,16 @@ print.stage.series <- function(ss) {
 #' @export
 #'
 #' @examples
+#' library(TimePlotR)
+#'
+#' dat.ss = as.stage.series(FourLevels, c('Lv1', 'Lv2', 'Lv3', 'Lv4'))
+#' plt <- hierarchical.sankey(dat.ss, bar.dist.min = 20, band.col = "darkgreen")
+#' plt
+#'
+#' ## Apply customised colour palette
+#' plt <- plt + scale_fill_brewer(palette="Spectral")
+#' plt
+#'
 hierarchical.sankey <-
   function(x.ss,
            bar.width = 10,
@@ -123,6 +142,7 @@ hierarchical.sankey <-
       y0 = -1,
       y1 = -1
     )
+    stocks$Level <- as.character(stocks$Level)
 
     for (i in 1:sts.n) {
       lv <- sts[i]
@@ -202,7 +222,7 @@ hierarchical.sankey <-
         x = (x0 + x1) / 2,
         y = (y0 + y1) / 2,
         label = Level
-      ))
+      ), alpha=0.7)
 
     dat <- unique(stocks[c('Stage', 'x0', 'x1')])
     plt <-

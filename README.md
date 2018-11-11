@@ -12,7 +12,10 @@ devtools::install_github("TimeWz667/TimePlotR")
 library(TimePlotR)
 ```
 
-## Data frame
+## Sankey diagram for panel data. d
+
+Data frame
+
 ```{r}
 head(FourLevels)
 ```
@@ -23,7 +26,12 @@ dat.ss = as.stage.series(FourLevels, c('Lv1', 'Lv2', 'Lv3', 'Lv4'))
 print(dat.ss)
 ```
 
+## State transition diagram
 
+## Monte-Carlo trends
+
+
+## Stage distribution diagram
 
 ## Figures
 
